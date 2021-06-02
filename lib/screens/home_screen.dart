@@ -5,6 +5,7 @@ import '../providers/currencies_provider.dart';
 import '../models/currency.dart';
 import '../widgets/currency_details_widget.dart';
 import '../widgets/currency_card_widget.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -51,7 +52,19 @@ class _HomeScreenState extends State<HomeScreen> {
     currencyList = currencyProvider.currencyList;
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.search),
+        leading: IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SearchScreen(
+                  currencyList: currencyList,
+                ),
+              ),
+            );
+          },
+        ),
         title: Image.asset(
           "assets/images/zebpay_logo.png",
           height: 50,

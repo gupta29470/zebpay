@@ -9,57 +9,59 @@ class CurrencyDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        ListTile(
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(currency.image),
-          ),
-          title: Text(
-            currency.name,
-            style: TextStyle(
-              fontSize: 25,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(currency.image),
             ),
-          ),
-          subtitle: Text(currency.symbol),
-          trailing: Column(
-            children: <Widget>[
-              Text(
-                "${currency.current_price} INR",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
+            title: Text(
+              currency.name,
+              style: TextStyle(
+                fontSize: 25,
               ),
-              Text(
-                "Vol ${currency.total_volume}",
-                style: TextStyle(
-                  color: Colors.grey,
+            ),
+            subtitle: Text(currency.symbol),
+            trailing: Column(
+              children: <Widget>[
+                Text(
+                  "${currency.current_price} INR",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
-              )
-            ],
+                Text(
+                  "Vol ${currency.total_volume}",
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                )
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        _currencyDetailListTile(
-          context,
-          "24hr High",
-          currency.high_24h.toString(),
-          "24hr Change",
-          currency.price_change_24h.toString(),
-          Colors.green,
-        ),
-        _currencyDetailListTile(
-          context,
-          "24hr low",
-          currency.low_24h.toString(),
-          "",
-          "",
-          Colors.red,
-        ),
-      ],
+          _currencyDetailListTile(
+            context,
+            "24hr High",
+            currency.high_24h.toString(),
+            "24hr Change",
+            currency.price_change_24h.toString(),
+            Colors.green,
+          ),
+          _currencyDetailListTile(
+            context,
+            "24hr low",
+            currency.low_24h.toString(),
+            "",
+            "",
+            Colors.red,
+          ),
+        ],
+      ),
     );
   }
 
